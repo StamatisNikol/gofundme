@@ -56,7 +56,7 @@
             <div class="story-section">
                 <div class="organizer-info">
                     <p class="organizer">Γράφτηκε από τον Σταμάτη</p>
-                    <p class="created-date">Τελευταία ενημέρωση: 17 Ιανουάριου 2025</p>
+                    <p class="created-date">Τελευταία ενημέρωση: 16 Ιανουάριου 2025</p>
                 </div>
                 
                 <div class="story-text">
@@ -139,7 +139,7 @@
                                class="gofundme-button" 
                                target="_blank" 
                                rel="noopener noreferrer"
-                               onclick="fbq('track', 'InitiateCheckout', {
+                               onclick="fbq('trackCustom', 'GoFundMeClick', {
                                    content_name: 'GoFundMe Donation',
                                    currency: 'EUR'
                                });">
@@ -154,7 +154,7 @@
                             <div class="iban-container">
                                 <p class="iban-label">IBAN:</p>
                                 <p class="iban-number">GR3101721850005185108891023</p>
-                                <button class="copy-iban" onclick="copyIBAN()">Αντιγραφή IBAN</button>
+                                <button class="copy-iban" onclick="copyIBAN(this)">Αντιγραφή IBAN</button>
                             </div>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
         }
 
         function trackIBANCopy() {
-            fbq('track', 'InitiateCheckout', {
+            fbq('trackCustom', 'IBANCopy', {
                 content_name: 'Bank Transfer',
                 currency: 'EUR'
             });
@@ -269,12 +269,19 @@
             document.querySelector('.updates-section') && observer.observe(document.querySelector('.updates-section'));
         });
 
-        // Update existing copyIBAN function
-        function copyIBAN() {
+        // Update IBAN copy function
+        function copyIBAN(button) {
             const iban = document.querySelector('.iban-number').textContent;
             navigator.clipboard.writeText(iban).then(() => {
                 trackIBANCopy();
-                alert('Το IBAN αντιγράφηκε στο πρόχειρο');
+                button.textContent = 'Αντιγράφηκε!';
+                button.style.backgroundColor = '#28a745';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    button.textContent = 'Αντιγραφή IBAN';
+                    button.style.backgroundColor = '#2b2d42';
+                }, 3000);
             });
         }
     </script>
