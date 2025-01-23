@@ -139,7 +139,10 @@
                                class="gofundme-button" 
                                target="_blank" 
                                rel="noopener noreferrer"
-                               onclick="fbq('track', 'GoFundMeClick');">
+                               onclick="fbq('track', 'InitiateCheckout', {
+                                   content_name: 'GoFundMe Donation',
+                                   currency: 'EUR'
+                               });">
                                 Δωρεά μέσω GoFundMe
                             </a>
                             <p class="gofundme-benefits">✓ Άμεση διαθεσιμότητα χρημάτων<br>✓ Ασφαλείς συναλλαγές<br>✓ Δυνατότητα πληρωμής με κάρτα</p>
@@ -222,5 +225,58 @@
         </main>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Add tracking functions after Facebook Pixel base code
+        function trackCostView() {
+            fbq('track', 'ViewContent', {
+                content_name: 'Cost Breakdown',
+                content_category: 'Treatment Details',
+                value: 75000,
+                currency: 'EUR'
+            });
+        }
+
+        function trackUpdateView() {
+            fbq('track', 'ViewContent', {
+                content_name: 'Progress Updates',
+                content_category: 'Treatment Progress'
+            });
+        }
+
+        function trackIBANCopy() {
+            fbq('track', 'InitiateCheckout', {
+                content_name: 'Bank Transfer',
+                currency: 'EUR'
+            });
+        }
+
+        // Intersection Observer for automatic tracking when sections come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('cost-section')) {
+                            trackCostView();
+                        } else if (entry.target.classList.contains('updates-section')) {
+                            trackUpdateView();
+                        }
+                    }
+                });
+            });
+
+            // Observe key sections
+            document.querySelector('.cost-section') && observer.observe(document.querySelector('.cost-section'));
+            document.querySelector('.updates-section') && observer.observe(document.querySelector('.updates-section'));
+        });
+
+        // Update existing copyIBAN function
+        function copyIBAN() {
+            const iban = document.querySelector('.iban-number').textContent;
+            navigator.clipboard.writeText(iban).then(() => {
+                trackIBANCopy();
+                alert('Το IBAN αντιγράφηκε στο πρόχειρο');
+            });
+        }
+    </script>
 </body>
 </html> 
