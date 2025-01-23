@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
+    <!-- Facebook Pixel Code Start -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1819492391928262'); // Replace with your actual Pixel ID
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1819492391928262&ev=PageView&noscript=1"/> <!-- Replace with your actual Pixel ID -->
+    </noscript>
+    <!-- Facebook Pixel Code End -->
+
     <!-- TikTok Pixel Code Start -->
     <script>
     !function (w, d, t) {
@@ -35,7 +54,7 @@
             <div class="story-section">
                 <div class="organizer-info">
                     <p class="organizer">Γράφτηκε από τον Σταμάτη</p>
-                    <p class="created-date">Τελευταία ενημέρωση: Ιανουάριος 2025</p>
+                    <p class="created-date">Τελευταία ενημέρωση: 16 Ιανουάριου 2025</p>
                 </div>
                 
                 <div class="story-text">
@@ -114,7 +133,11 @@
                         <div class="gofundme-container">
                             <h3>Προτεινόμενος Τρόπος - Πληρωμή με Κάρτα</h3>
                             <p>Για την καλύτερη παρακολούθηση των δωρεών και την άμεση διαθεσιμότητα των χρημάτων, προτείνουμε να συνεισφέρετε μέσω της πλατφόρμας GoFundMe:</p>
-                            <a href="https://www.gofundme.com/f/support-dimitris-in-his-battle-against-cancer" class="gofundme-button" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.gofundme.com/manage/stirikse-ton-dimitri-stin-katapolemisi-toy-karkinoy" 
+                               class="gofundme-button" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               onclick="fbq('track', 'GoFundMeClick');">
                                 Δωρεά μέσω GoFundMe
                             </a>
                             <p class="gofundme-benefits">✓ Άμεση διαθεσιμότητα χρημάτων<br>✓ Ασφαλείς συναλλαγές<br>✓ Δυνατότητα πληρωμής με κάρτα</p>
